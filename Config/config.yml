@@ -1,0 +1,6 @@
+prod:
+  username: "root"
+  password: "Muthu2003!"
+  db_host: "127.0.0.1"
+  db_port: 3307
+  db_name: "pet_adoptiondb"
