@@ -1,0 +1,468 @@
+syntax = "proto3";
+
+option go_package = "pet/pb";
+
+import "google/api/annotations.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+// SellerService definition
+service sellerservice {
+    // CRUD for Seller
+    rpc CreateSeller(CreateSellerRequest) returns (CreateSellerResponse) {
+        option (google.api.http) = {
+            post: "/sellers"
+            body: "*"
+        };
+    }
+
+    rpc GetSeller(GetSellerIDRequest) returns (GetSellerIDResponse) {
+        option (google.api.http) = {
+            get: "/sellers/{id}"
+        };
+    }
+
+    rpc ListSeller(UserEmpty) returns (ListSellerResponse) {
+        option (google.api.http) = {
+            get: "/sellers"
+        };
+    }
+    
+    rpc UpdateUser(UpdateSellerRequest) returns (UpdateSellerResponse) {
+        option (google.api.http) = {
+            put: "/sellers/{id}"
+            body: "*"
+        };
+    }
+
+    rpc DeleteSeller(DeleteSellerRequest) returns (DeleteSellerResponse) {
+        option (google.api.http) = {
+            delete: "/sellers/{id}"
+        };
+    }
+
+    // CRUD for Buyer
+    
+    // CRUD for Pet
+   
+}
+
+service buyerservice{
+    rpc CreateBuyer(CreateBuyerRequest) returns (CreateBuyerResponse) {
+        option (google.api.http) = {
+            post: "/buyers"
+            body: "*"
+        };
+    }
+
+    rpc GetBuyer(GetBuyerIDRequest) returns (GetBuyerIDResponse) {
+        option (google.api.http) = {
+            get: "/buyers/{id}"
+        };
+    }
+
+    rpc ListBuyer(UserEmpty) returns (ListBuyerResponse) {
+        option (google.api.http) = {
+            get: "/buyers"
+        };
+    }
+
+    rpc UpdateBuyer(UpdateBuyerRequest) returns (UpdateBuyerResponse) {
+        option (google.api.http) = {
+            put: "/buyers/{id}"
+            body: "*"
+        };
+    }
+
+    rpc DeleteBuyer(DeleteBuyerRequest) returns (DeleteBuyerResponse) {
+        option (google.api.http) = {
+            delete: "/buyers/{id}"
+        };
+    }
+}
+
+service petservice{
+     rpc CreatePet(CreatePetRequest) returns (CreatePetResponse) {
+        option (google.api.http) = {
+            post: "/pets"
+            body: "*"
+        };
+    }
+
+    rpc GetPet(GetPetIDRequest) returns (GetPetIDResponse) {
+        option (google.api.http) = {
+            get: "/pets/{id}"
+        };
+    }
+
+    rpc ListPet(UserEmpty) returns (ListPetResponse) {
+        option (google.api.http) = {
+            get: "/pets"
+        };
+    }
+
+    rpc UpdatePet(UpdatePetRequest) returns (UpdatePetResponse) {
+        option (google.api.http) = {
+            put: "/pets/{id}"
+            body: "*"
+        };
+    }
+
+    rpc DeletePet(DeletePetRequest) returns (DeletePetResponse) {
+        option (google.api.http) = {
+            delete: "/pets/{id}"
+        };
+    }
+
+}
+service Adoptionservice {
+  rpc CreateAdoption(CreateAdoptionRequest) returns (CreateAdoptionResponse) {
+    option (google.api.http) = {
+      post: "/adoptions"
+      body: "*"
+    };
+  }
+  rpc GetAdoption(GetAdoptionRequest) returns (GetAdoptionResponse) {
+    option (google.api.http) = {
+      get: "/adoptions/{adoption_id}"
+    };
+  }
+  rpc ListAdoptions(Empty) returns (ListAdoptionResponse) {
+    option (google.api.http) = {
+      get: "/adoptions"
+    };
+  }
+  rpc UpdateAdoption(UpdateAdoptionRequest) returns (UpdateAdoptionResponse) {
+    option (google.api.http) = {
+      put: "/adoptions/{adoption_id}"
+      body: "*"
+    };
+  }
+  rpc DeleteAdoption(DeleteAdoptionRequest) returns (DeleteAdoptionResponse) {
+    option (google.api.http) = {
+      delete: "/adoptions/{adoption_id}"
+    };
+  }
+}
+service PetHealthService {
+    rpc CreatePetHealth(CreatePetHealthRequest) returns (CreatePetHealthResponse) {
+        option (google.api.http) = {
+            post: "/pethealth"
+            body: "*"
+        };
+    }
+
+    rpc GetPetHealth(GetPetHealthIDRequest) returns (GetPetHealthIDResponse) {
+        option (google.api.http) = {
+            get: "/pethealth/{id}"
+        };
+    }
+
+ rpc ListPetHealth(google.protobuf.Empty) returns (ListPetHealthResponse) {
+  option (google.api.http) = {
+    get: "/pethealth"
+  };
+ }
+
+    rpc UpdatePetHealth(UpdatePetHealthRequest) returns (UpdatePetHealthResponse) {
+        option (google.api.http) = {
+            put: "/pethealth/{id}"
+            body: "*"
+        };
+    }
+
+    rpc DeletePetHealth(DeletePetHealthRequest) returns (DeletePetHealthResponse) {
+        option (google.api.http) = {
+            delete: "/pethealth/{id}"
+        };
+    }
+}
+
+
+
+
+
+// Empty message
+message UserEmpty {}
+
+// -----------------------------
+// Seller Messages
+// -----------------------------
+message CreateSellerRequest {
+  int32 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string phone_number = 4;
+  string address = 5;
+  int32 age = 6;
+}
+
+message CreateSellerResponse {
+    string message = 1;
+}
+
+message GetSellerIDRequest {
+    int32 id = 1;
+}
+
+message GetSellerIDResponse {
+  int32 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string phone_number = 4;
+  string address = 5;
+  int32 age = 6;
+}
+
+message ListSellerResponse {
+    repeated GetSellerIDResponse sellers = 1;
+}
+
+message UpdateSellerRequest {
+  int32 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string phone_number = 4;
+  string address = 5;
+  int32 age = 6;
+}
+
+message UpdateSellerResponse {
+    string message = 1;
+}
+
+message DeleteSellerRequest {
+    int32 id = 1;
+}
+
+message DeleteSellerResponse {
+    string message = 1;
+}
+
+// -----------------------------
+// Buyer Messages
+// -----------------------------
+message CreateBuyerRequest {
+  int32 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string phone_number = 4;
+  string address = 5;
+  int32 age = 6;
+}
+
+message CreateBuyerResponse {
+    string message = 1;
+}
+
+message GetBuyerIDRequest {
+    int32 id = 1;
+}
+
+message GetBuyerIDResponse {
+  int32 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string phone_number = 4;
+  string address = 5;
+  int32 age = 6;
+}
+
+message ListBuyerResponse {
+    repeated GetBuyerIDResponse buyers = 1;
+}
+
+message UpdateBuyerRequest {
+  int32 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string phone_number = 4;
+  string address = 5;
+  int32 age = 6;
+}
+
+message UpdateBuyerResponse {
+    string message = 1;
+}
+
+message DeleteBuyerRequest {
+    int32 id = 1;
+}
+
+message DeleteBuyerResponse {
+    string message = 1;
+}
+
+// -----------------------------
+// Pet Messages
+// -----------------------------
+message CreatePetRequest {
+  int32 id = 1;
+  int32 seller_id = 2;
+  string pet_name = 3;
+  string pet_type = 4; // ENUM ('Dog', 'Cat', 'Bird', 'Others')
+  string breed = 5;
+  int32 age = 6;
+  string gender = 7;   // ENUM ('Male', 'Female')
+  string status = 8;   // ENUM ('Available', 'Adopted')
+  string pet_image = 9;
+}
+
+message CreatePetResponse {
+    string message = 1;
+}
+
+message GetPetIDRequest {
+    int32 id = 1;
+}
+
+message GetPetIDResponse {
+  int32 id = 1;
+  int32 seller_id = 2;
+  string pet_name = 3;
+  string pet_type = 4;
+  string breed = 5;
+  int32 age = 6;
+  string gender = 7;
+  string status = 8;
+  string pet_image = 9;
+}
+
+message ListPetResponse {
+    repeated GetPetIDResponse pets = 1;
+}
+
+message UpdatePetRequest {
+  int32 id = 1;
+  int32 seller_id = 2;
+  string pet_name = 3;
+  string pet_type = 4;
+  string breed = 5;
+  int32 age = 6;
+  string gender = 7;
+  string status = 8;
+  string pet_image = 9;
+}
+
+message UpdatePetResponse {
+    string message = 1;
+}
+
+message DeletePetRequest {
+    int32 id = 1;
+}
+
+message DeletePetResponse {
+    string message = 1;
+}
+message CreateAdoptionRequest {
+  int32 pet_id = 1;
+  int32 buyer_id = 2;
+  google.protobuf.Timestamp adoption_date = 3;  // Change from string to Timestamp
+  string status = 4;
+}
+message CreateAdoptionResponse {
+  string message = 1;
+}
+
+message GetAdoptionRequest {
+  int32 adoption_id = 1;
+}
+
+message GetAdoptionResponse {
+  int32 adoption_id = 1;
+  int32 pet_id = 2;
+  int32 buyer_id = 3;
+  google.protobuf.Timestamp adoption_date = 4;  // Change here too
+  string status = 5;
+}
+
+
+message UpdateAdoptionRequest {
+  int32 adoption_id = 1;
+  int32 pet_id = 2;
+  int32 buyer_id = 3;
+  google.protobuf.Timestamp adoption_date = 4; 
+  string status = 5;
+}
+
+message UpdateAdoptionResponse {
+  string message = 1;
+}
+
+message DeleteAdoptionRequest {
+  int32 adoption_id = 1;
+}
+
+message DeleteAdoptionResponse {
+  string message = 1;
+}
+
+message ListAdoptionResponse {
+  repeated GetAdoptionResponse adoptions = 1;
+}
+message AdoptionEmpty {}
+
+message Empty {}
+
+// PetHealth Messages
+
+message CreatePetHealthRequest {
+    int32 pet_id = 1;
+    bool vaccinated = 2;
+    google.protobuf.Timestamp vaccination_date = 3;
+    string allergies = 4;
+    google.protobuf.Timestamp last_vet_visit_date = 5;
+    string health_remarks = 6;
+}
+
+message CreatePetHealthResponse {
+    string message = 1;
+}
+
+// GetPetHealthIDRequest & Response
+message GetPetHealthIDRequest {
+    int32 id = 1;
+}
+
+message GetPetHealthIDResponse {
+    int32 health_id = 1;
+    int32 pet_id = 2;
+    bool vaccinated = 3;
+    google.protobuf.Timestamp vaccination_date = 4;
+    string allergies = 5;
+    google.protobuf.Timestamp last_vet_visit_date = 6;
+    string health_remarks = 7;
+}
+
+// ListPetHealthRequest & Response
+message EmptyPetHealthRequest {}
+
+
+message ListPetHealthResponse {
+    repeated GetPetHealthIDResponse pet_healths = 1;
+}
+
+// UpdatePetHealthRequest & Response
+message UpdatePetHealthRequest {
+    int32 id = 1;
+    int32 pet_id = 2;
+    bool vaccinated = 3;
+    google.protobuf.Timestamp vaccination_date = 4;
+    string allergies = 5;
+    google.protobuf.Timestamp last_vet_visit_date = 6;
+    string health_remarks = 7;
+}
+
+message UpdatePetHealthResponse {
+    string message = 1;
+}
+
+// DeletePetHealthRequest & Response
+message DeletePetHealthRequest {
+    int32 id = 1;
+}
+
+message DeletePetHealthResponse {
+    string message = 1;
+}
